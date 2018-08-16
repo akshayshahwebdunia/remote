@@ -7,15 +7,26 @@
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="main.js"></script>
+ 
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
-    <script src="admin.ts"></script>
     <script>
+  
+  databaseURL: "https://fir-project-5959e.firebaseio.com"
+
+var config = {
+        apiKey: "AIzaSyBNzvcbrhnG-RpClXTWDZajKXLjlI7VCGU",
+        authDomain: "fir-project-5959e.firebaseapp.com",
+        databaseURL: "https://fir-project-5959e.firebaseio.com",
+        projectId: "fir-project-5959e",
+        storageBucket: "fir-project-5959e.appspot.com",
+        messagingSenderId: "707436163379"
+    };
+    firebase.initializeApp(config);
+    var database=firebase.database();
     </script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js"></script>
     <script src="voting.js"></script>
 </head>
-
 <body>
     <center>
     
@@ -27,14 +38,13 @@
                 <button type="button"  id="Contestant5" value="Contestant5" >Contestant5</button>
         </table>
         <div>
-            <div id="div1">Contestant1 has got 0 votes</div>
-            <div id="div2">Contestant2 has got 0 votes</div>
-            <div id="div3">Contestant3 has got 0 votes</div>
-            <div id="div4">Contestant4 has got 0 votes</div>
-            <div id="div5">Contestant5 has got 0 votes</div>
+            <div id="div1"></div>
+            <div id="div2"></div>
+            <div id="div3"></div>
+            <div id="div4"></div>
+            <div id="div5"></div>
         </div>
 
     </center>
 </body>
-
-</html>
+</html> 

@@ -101,41 +101,42 @@
 //     })
 // })
 //     })
-
 //var location1,id,name,count,new1,id,name;
 $(document).ready(function () {
-
-    window.setInterval(function(){
-        bbb("Contestant/A/vote_count", "#div1", "Contestant1")}, 100);
-
-     window.setInterval(function(){
-        bbb("Contestant/B/vote_count", "#div2", "Contestant2")
-    }, 100);
-        window.setInterval(function(){
-            bbb("Contestant/D/vote_count", "#div4", "Contestant4")
-        }, 100);
-          window.setInterval(function(){
-            bbb("Contestant/C/vote_count", "#div3", "Contestant3")
-        }, 100);
-          window.setInterval(function(){
-            bbb("Contestant/E/vote_count", "#div5", "Contestant5")
-        }, 100);
+    var postElement1 = document.getElementById("div1");
+    var postElement2 = document.getElementById("div2");
+    var postElement3 = document.getElementById("div3");
+    var postElement4 = document.getElementById("div4");
+    var postElement5 = document.getElementById("div5");
     
-
-        $.getJSON('https://api.ipify.org?format=jsonp&callback=getIP', function(data){
-            console.log(data);
-        });
-
-    function bbb(location1, id, name) {
-        database.ref(location1).once('value').then(function (snapshot) {
-            $(id).html(name + ":" + snapshot.val() + "votes");
-        })
-    }
-
+    var updateValue = function (element, value,contestantName) {
+        element.textContent = contestantName+":"+value+"votes";
+    };
+    var ContestantARef = firebase.database().ref('Contestant/A/vote_count');
+    ContestantARef.on('value', function (snapshot) {
+        updateValue(postElement1, snapshot.val(),"ContestantA");
+    });
+    var ContestantARef = firebase.database().ref('Contestant/B/vote_count');
+    ContestantARef.on('value', function (snapshot) {
+        updateValue(postElement2, snapshot.val(),"ContestantB");
+    });
+    var ContestantARef = firebase.database().ref('Contestant/C/vote_count');
+    ContestantARef.on('value', function (snapshot) {
+        updateValue(postElement3, snapshot.val(),"ContestantC");
+    });
+    var ContestantARef = firebase.database().ref('Contestant/D/vote_count');
+    ContestantARef.on('value', function (snapshot) {
+        updateValue(postElement4, snapshot.val(),"ContestantD");
+    });
+    var ContestantARef = firebase.database().ref('Contestant/E/vote_count');
+    ContestantARef.on('value', function (snapshot) {
+        updateValue(postElement5, snapshot.val(),"ContestantE");
+    });
+    
+    
+    
     var count;
     var new1;
-
-
     function aaa(location1, location2, id, name) {
         database.ref(location1).once('value').then(function (snapshot) {
             count = snapshot.val();
@@ -148,22 +149,19 @@ $(document).ready(function () {
             $(id).html(name + ":" + count + "votes");
         })
     }
-//    bbb("Contestant/A/vote_count", "#div1", "Contestant1")
-    setTimeout(bbb("Contestant/A/vote_count", "#div1", "Contestant1"), 1000);
     $("#Contestant1").click(function () {
-        aaa("Contestant/A/vote_count", "Contestant/A", "#div1", "Contestant1");
+        aaa("Contestant/A/vote_count", "Contestant/A", "#div1", "ContestantA");
     })
     $("#Contestant2").click(function () {
-        aaa("Contestant/B/vote_count", "Contestant/B", "#div2", "Contestant2");
+        aaa("Contestant/B/vote_count", "Contestant/B", "#div2", "ContestantB");
     })
     $("#Contestant3").click(function () {
-        aaa("Contestant/C/vote_count", "Contestant/C", "#div3", "Contestant3");
+        aaa("Contestant/C/vote_count", "Contestant/C", "#div3", "ContestantC");
     })
     $("#Contestant4").click(function () {
-        aaa("Contestant/D/vote_count", "Contestant/D", "#div4", "Contestant4");
+        aaa("Contestant/D/vote_count", "Contestant/D", "#div4", "ContestantD");
     })
     $("#Contestant5").click(function () {
-        aaa("Contestant/E/vote_count", "Contestant/E", "#div5", "Contestant5");
+        aaa("Contestant/E/vote_count", "Contestant/E", "#div5", "ContestantE");
     })
-
 })
